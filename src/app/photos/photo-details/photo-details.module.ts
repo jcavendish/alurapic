@@ -3,12 +3,18 @@ import { CommonModule } from "@angular/common";
 
 import { PhotoDetailsComponent } from "./photo-details.component";
 import { PhotoModule } from "../photo/photo.module";
+import { RouterModule } from "@angular/router";
+import { PhotoCommentsComponent } from "./photo-comments/photo-comments.component";
 
 @NgModule({
-  declarations: [PhotoDetailsComponent],
+  declarations: [
+    PhotoDetailsComponent,
+    PhotoCommentsComponent
+  ],
   imports: [
     CommonModule,
-    PhotoModule
+    PhotoModule,
+    RouterModule
   ],
   exports: [PhotoDetailsComponent]
 })
