@@ -1,0 +1,72 @@
+<h4 class="text-center">Register to embrace a new world!</h4>
+<form  [formGroup]="signupGroup" class="form mt-4" (submit)="signup()">
+  <div class="form-group">
+    <input  #emailInput formControlName="email" placeholder="email" class="form-control" autofocus />
+    <ap-vmessage 
+      *ngIf="signupGroup.get('email').errors?.required"
+      text="E-mail is required!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('email').errors?.email"
+      text="E-mail is not valid!">
+    </ap-vmessage>
+  </div>
+  <div class="form-group">
+    <input formControlName="fullName" placeholder="full name" class="form-control" />
+    <ap-vmessage 
+      *ngIf="signupGroup.get('fullName').errors?.required"
+      text="Full name is required!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('fullName').errors?.minLength"
+      text="Full name is too short!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('fullName').errors?.maxLength"
+      text="Full name is too long!">
+    </ap-vmessage>
+  </div>
+  <div class="form-group">
+    <input formControlName="userName" placeholder="user name" class="form-control" />
+    <ap-vmessage 
+      *ngIf="signupGroup.get('userName').errors?.required"
+      text="User name is required!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('userName').errors?.minLength"
+      text="User name is too short!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('userName').errors?.maxLength"
+      text="User name is too long!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('userName').errors?.lowerCaseValidation"
+      text="User name should be lower case!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('userName').errors?.userTakenValidation"
+      text="User name alrady taken! Please choose another one.">
+    </ap-vmessage>
+    <small *ngIf="signupGroup.get('userName').valid" class="text-success">User name valid</small>
+  </div>
+  <div class="form-group">
+    <input formControlName="password" placeholder="password" type="password" class="form-control" />
+    <ap-vmessage 
+      *ngIf="signupGroup.get('password').errors?.required"
+      text="Password is required!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('password').errors?.minLength"
+      text="Password is too short!">
+    </ap-vmessage>
+    <ap-vmessage 
+      *ngIf="signupGroup.get('password').errors?.maxLength"
+      text="Password is too long!">
+    </ap-vmessage>
+  </div>
+  <button [disabled]="signupGroup.invalid || signupGroup.pending" class="btn btn-primary btn-block">Register</button>
+  <p>
+    Already a user? <a [routerLink]="['']"> Sign In! </a>
+  </p>
+</form>
