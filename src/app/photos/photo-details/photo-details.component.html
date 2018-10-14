@@ -8,7 +8,21 @@
         <p class="text-left break-word">{{photo.description}}</p>
         <hr>
       </small>
-      <ap-photo-comments [photoId]="photoId"></ap-photo-comments>
+      <div class="text-left mb-4">
+          <i class="fa fa-comment-o fa-2x mr-2 ml-2"></i>{{ photo.comments }}
+          <i PhotoOwnerOnly 
+            [ownerUser]="photo.userId" 
+            class="fa fa-trash-o fa-2x pull-right" 
+            (click)="delete()">
+          </i>
+      </div>
+      <ap-photo-comments 
+        *ngIf="photo.allowComments; else warning"
+        [photoId]="photoId">
+      </ap-photo-comments>
+      <ng-template #warning>
+        <p>The user has disabled the comments for this photo</p>
+      </ng-template>
     </div>
   </div>
 </div>

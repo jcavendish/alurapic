@@ -1,5 +1,5 @@
 <div *ngIf="(comments$ | async) as comments">
-  <ul class="list-unstyled" >
+  <ul class="list-unstyled comment-list">
     <li *ngFor="let comment of comments">
       <a 
         class="text-dark font-weight-bold mr-1"
@@ -11,9 +11,9 @@
     </li>
   </ul>
   <div class="mt-4">
-    <form>
+    <form [formGroup]="commentForm" (submit)="addComment()">
       <div class="input-group">
-        <textarea class="form-control"></textarea>
+        <textarea formControlName="commentText" class="form-control"></textarea>
         <div class="input-group-append">
           <button type="submit" class="btn btn-primary pull-left">
             Publish
